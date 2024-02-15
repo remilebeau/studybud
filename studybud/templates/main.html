@@ -6,24 +6,15 @@
     <title>StudyBud</title>
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'base/style.css' %}" />
-
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
   </head>
   <body>
-    {% include "navbar.html" %}
-    
-    {% comment %} display error messages {% endcomment %}
-    {% if messages %}
+    {% include "navbar.html" %} {% if messages %}
     <ul class="messages">
       {% for message in messages %}
       <li>{{ message }}</li>
       {% endfor %}
     </ul>
-    {% endif %}
-    
-    {% block content %} 
-    
-    
-    {% endblock %}
+    {% endif %} {% block content %} {% endblock %}
   </body>
 </html>
