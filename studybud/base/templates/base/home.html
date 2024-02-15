@@ -22,8 +22,10 @@
     <h3>{{room_count}} room{{room_count|pluralize}} available</h3>
     {% for room in rooms %}
     <article>
+      {% if request.user == room.host %}
       <p><a href="{% url 'update-room' room.id %}">Update</a></p>
       <p><a href="{% url 'delete-room' room.id %}">Delete</a></p>
+      {% endif %}
       <p>@{{room.host.username}}</p>
       <h3>
         {{room.id}} -- <a href="{% url 'room' room.id %}"> {{ room.name }}</a>
