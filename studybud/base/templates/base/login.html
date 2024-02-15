@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<main class="login">
+<main class="login__container">
     <form class="login__form" method="POST" action="">{% csrf_token %} {{form.as_p}}
 
         <label for="username">Username:</label> <input type="text" name="username" placeholder="Enter Username"></label> 
