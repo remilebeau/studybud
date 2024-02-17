@@ -1,0 +1,14 @@
+{% extends "main.html" %} {% block content %}
+
+<h1>{{user.username}}</h1>
+
+<main class="profile__container">
+  {% comment %} topics {% endcomment %}
+  <section>{% include 'base/topics_component.html' %}</section>
+  {% comment %} feed {% endcomment %}
+  <section>{% include 'base/feed_component.html' %}</section>
+  {% comment %} activity {% endcomment %}
+  <section>{% include 'base/activity_component.html' %}</section>
+</main>
+
+{% endblock content%}
