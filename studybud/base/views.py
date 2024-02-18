@@ -13,12 +13,15 @@ from .forms import RoomForm, UserForm
 
 
 def loginPage(request):
-
     if request.user.is_authenticated:
         return redirect("home")
 
     if request.method == "POST":
-        username = request.POST.get("username").lower()
+        username = request.POST.get("username")
+        if not username:
+            messages.error(request, "Username is required")
+            return redirect("login")
+        username = username.lower()
         password = request.POST.get("password")
 
         try:
@@ -32,10 +35,9 @@ def loginPage(request):
             login(request, user)
             return redirect("home")
         else:
-            messages.error(request, "Username or password does not exist")
+            messages.error(request, "Username OR password does not exist")
 
-    context = {}
-    return render(request, "base/login.html", context)
+    return render(request, "base/login.html")
 
 
 def logoutUser(request):
@@ -57,8 +59,7 @@ def registerPage(request):
         else:
             messages.error(request, "An error occurred during registration")
 
-    context = {"form": form}
-    return render(request, "base/register.html", context)
+    return render(request, "base/register.html", {"form": form})
 
 
 def home(request):
